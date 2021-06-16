@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import Axios from "axios";
 import Searchbar from "../components/Searchbar";
 
@@ -34,8 +35,10 @@ class MoviesView extends Component {
       <>
         <Searchbar onSubmit={this.onChangeQuery} />
         <ul>
-          {this.state.movies.map((list) => (
-            <li key={list.id}>{list.original_title}</li>
+          {this.state.movies.map((movie) => (
+            <li key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
+            </li>
           ))}
         </ul>
       </>
