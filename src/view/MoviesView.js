@@ -1,25 +1,43 @@
 import { Component } from "react";
 import Axios from "axios";
+import Searchbar from "../components/Searchbar";
 
 class MoviesView extends Component {
   state = {
     movies: [],
+    searchQuery: "",
   };
 
-  async componentDidMount() {
-    const response = await Axios.get(
-      "https://api.themoviedb.org/3/search/movie?api_key=de9614269071e01284d31f53de5b2a97&query=batman"
-    );
-    console.log(response.data.results);
+  onChangeQuery = (query) => {
+    this.setState({
+      searchQuery: query,
+      movies: [],
+    });
+  };
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchQuery !== this.state.searchQuery) {
+      const { searchQuery } = this.state;
+      const response = await Axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=de9614269071e01284d31f53de5b2a97&query=${searchQuery}`
+      );
+
+      console.log(response.data.results);
+      this.setState({ movies: response.data.results });
+      this.props.location.search = this.state.searchQuery;
+    }
   }
 
   render() {
     console.log(this.props.match.url);
     return (
       <>
-        <h1>Search for movies</h1>
-        <input></input>
-        <button type="button">Search</button>
+        <Searchbar onSubmit={this.onChangeQuery} />
+        <ul>
+          {this.state.movies.map((list) => (
+            <li key={list.id}>{list.original_title}</li>
+          ))}
+        </ul>
       </>
     );
   }

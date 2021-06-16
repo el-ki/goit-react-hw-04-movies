@@ -15,7 +15,7 @@ class Review extends Component {
       <>
         <ul>
           {this.props.review.map((review) => (
-            <li>
+            <li key={review.content}>
               Author: {review.author}
               <p>{review.content}</p>
             </li>

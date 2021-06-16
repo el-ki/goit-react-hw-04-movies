@@ -21,7 +21,7 @@ class Cast extends Component {
       <>
         <ul>
           {this.props.cast.map((actor) => (
-            <li>
+            <li key={actor.id}>
               <img
                 src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`}
                 alt={`${actor.name}`}
