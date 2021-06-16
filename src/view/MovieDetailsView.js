@@ -3,6 +3,7 @@ import Axios from "axios";
 import { NavLink, Route } from "react-router-dom";
 import Cast from "../components/Cast";
 import Review from "../components/Review";
+import routes from "../routes";
 
 class MovieDetailsView extends Component {
   state = {
@@ -34,9 +35,17 @@ class MovieDetailsView extends Component {
     this.setState({ review: res.data.results });
   }
 
+  handleGoBack = () => {
+    const { location, history } = this.props;
+    history.push(location?.state?.from || routes.movie);
+  };
+
   render() {
     return (
-      <>
+      <div className="container">
+        <button type="button" onClick={this.handleGoBack}>
+          Go back
+        </button>
         <img
           src={`https://image.tmdb.org/t/p/w500/${this.state.poster_path}`}
           alt={`${this.state.original_title}`}
@@ -68,7 +77,7 @@ class MovieDetailsView extends Component {
           path={`${this.props.match.path}/reviews`}
           render={(props) => <Review {...props} review={this.state.review} />}
         />
-      </>
+      </div>
     );
   }
 }

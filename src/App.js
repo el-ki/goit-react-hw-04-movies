@@ -3,6 +3,8 @@ import HomeView from "./view/HomeView";
 import MoviesView from "./view/MoviesView";
 import NotFoundView from "./view/NotFoundView";
 import MovieDetailsView from "./view/MovieDetailsView";
+import routes from "./routes";
+import AppBar from "./components/AppBar";
 
 // const linkStyles = {
 //   base: {
@@ -15,11 +17,12 @@ import MovieDetailsView from "./view/MovieDetailsView";
 
 const App = () => (
   <>
-    <ul>
+    <AppBar />
+    {/* <ul>
       <li>
         <NavLink
           exact
-          to="/"
+          to={routes.home}
           className="NavLink"
           activeClassName="NavLink--active"
         >
@@ -28,18 +31,18 @@ const App = () => (
       </li>
       <li>
         <NavLink
-          to="/movies"
+          to={routes.movie}
           className="NavLink"
           activeClassName="NavLink--active"
         >
           Movies
         </NavLink>
       </li>
-    </ul>
+    </ul> */}
     <Switch>
-      <Route exact path="/" component={HomeView} />
-      <Route path="/movies/:movieId" component={MovieDetailsView}></Route>
-      <Route exact path="/movies" component={MoviesView} />
+      <Route exact path={routes.home} component={HomeView} />
+      <Route path={routes.movieDetails} component={MovieDetailsView}></Route>
+      <Route exact path={routes.movie} component={MoviesView} />
       <Route component={NotFoundView} />
     </Switch>
   </>
