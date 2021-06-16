@@ -13,14 +13,18 @@ class Review extends Component {
   render() {
     return (
       <>
-        <ul>
-          {this.props.review.map((review) => (
-            <li key={review.content}>
-              Author: {review.author}
-              <p>{review.content}</p>
-            </li>
-          ))}
-        </ul>
+        {this.state.review.length > 0 ? (
+          <ul>
+            {this.props.review.map((review) => (
+              <li key={review.content}>
+                Author: {review.author}
+                <p>{review.content}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Be the first to write a review on this movie!</p>
+        )}
       </>
     );
   }

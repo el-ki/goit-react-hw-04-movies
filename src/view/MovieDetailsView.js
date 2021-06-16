@@ -42,24 +42,34 @@ class MovieDetailsView extends Component {
 
   render() {
     return (
-      <div className="container">
-        <button type="button" onClick={this.handleGoBack}>
-          Go back
-        </button>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${this.state.poster_path}`}
-          alt={`${this.state.original_title}`}
-        />
-        <h1> {this.state.original_title}</h1>
-        <p>User score: {this.state.vote_average}</p>
-        <h2>Overwiev</h2>
-        <p>{this.state.overview}</p>
-        <h2>Genres</h2>
-        <ul>
-          {this.state.genres.map((genre) => (
-            <li key={genre.id}>{genre.name}</li>
-          ))}
-        </ul>
+      <>
+        <div className="Container">
+          <button
+            type="button"
+            className="Back-btn"
+            onClick={this.handleGoBack}
+          >
+            Go back
+          </button>
+          <div className="Movie-wrap">
+            <img
+              src={`https://image.tmdb.org/t/p/w300/${this.state.poster_path}`}
+              alt={`${this.state.original_title}`}
+            />
+            <div className="Description-wrap">
+              <h1> {this.state.original_title}</h1>
+              <p>User score: {this.state.vote_average}</p>
+              <h2>Overwiev</h2>
+              <p>{this.state.overview}</p>
+              <h2>Genres</h2>
+              <ul>
+                {this.state.genres.map((genre) => (
+                  <li key={genre.id}>{genre.name}</li>
+                ))}
+              </ul>{" "}
+            </div>
+          </div>
+        </div>
         <h3>Additional information</h3>
         <ul>
           <li>
@@ -77,7 +87,7 @@ class MovieDetailsView extends Component {
           path={`${this.props.match.path}/reviews`}
           render={(props) => <Review {...props} review={this.state.review} />}
         />
-      </div>
+      </>
     );
   }
 }

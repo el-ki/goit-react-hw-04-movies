@@ -20,7 +20,7 @@ class HomeView extends Component {
     console.log(this.props.match.url);
     return (
       <>
-        <h1>Trending today</h1>
+        <h1 className="Main-title">Trending today</h1>
         <MovieList movies={this.state.movies} />
         {/* <ul>
           {this.state.movies.map((movie) => (
