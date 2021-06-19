@@ -11,11 +11,6 @@ class Cast extends Component {
     this.setState({ cast: this.props.cast });
   }
 
-  componentDidUpdate() {
-    console.log(this.props.match.params.movieId);
-    console.log(this.props.cast);
-  }
-
   render() {
     return (
       <>

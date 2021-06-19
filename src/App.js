@@ -1,9 +1,6 @@
 import { Suspense, lazy } from "react";
-import { Route, NavLink, Switch } from "react-router-dom";
-// import HomeView from "./view/HomeView";
-// import MoviesView from "./view/MoviesView";
+import { Route, Switch } from "react-router-dom";
 import NotFoundView from "./view/NotFoundView";
-// import MovieDetailsView from "./view/MovieDetailsView";
 import routes from "./routes";
 import AppBar from "./components/AppBar";
 
@@ -16,41 +13,10 @@ const MoviesView = lazy(() =>
 const MovieDetailsView = lazy(() =>
   import("./view/MovieDetailsView" /* webpackChunkName: "book-details-view" */)
 );
-// const NotFoundView = lazy(() => import("./view/NotFoundView"));
-
-// const linkStyles = {
-//   base: {
-//     color: "black",
-//   },
-//   active: {
-//     color: "red",
-//   },
-// };
 
 const App = () => (
   <>
     <AppBar />
-    {/* <ul>
-      <li>
-        <NavLink
-          exact
-          to={routes.home}
-          className="NavLink"
-          activeClassName="NavLink--active"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={routes.movie}
-          className="NavLink"
-          activeClassName="NavLink--active"
-        >
-          Movies
-        </NavLink>
-      </li>
-    </ul> */}
     <Suspense fallback={<h1>Loading...</h1>}>
       <Switch>
         <Route exact path={routes.home} component={HomeView} />

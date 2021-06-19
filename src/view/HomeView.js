@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import Axios from "axios";
 import MovieList from "../components/MovieList";
 
@@ -22,13 +21,6 @@ class HomeView extends Component {
       <>
         <h1 className="Main-title">Trending today</h1>
         <MovieList movies={this.state.movies} />
-        {/* <ul>
-          {this.state.movies.map((movie) => (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
-            </li>
-          ))}
-        </ul> */}
       </>
     );
   }

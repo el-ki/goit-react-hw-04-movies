@@ -37,7 +37,7 @@ class MovieDetailsView extends Component {
 
   handleGoBack = () => {
     const { location, history } = this.props;
-    history.push(location?.state?.from || routes.movie);
+    history.push(location?.state?.from || routes.movies);
   };
 
   render() {
@@ -73,19 +73,37 @@ class MovieDetailsView extends Component {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <NavLink to={`${this.props.match.url}/cast`}>Cast</NavLink>
+            <NavLink
+              to={{
+                pathname: `${this.props.match.url}/cast`,
+                state: { ...this.props.location.state },
+              }}
+            >
+              Cast
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
+            <NavLink
+              to={{
+                pathname: `${this.props.match.url}/reviews`,
+                state: { ...this.props.location.state },
+              }}
+            >
+              Reviews
+            </NavLink>
           </li>
         </ul>
         <Route
           path={`${this.props.match.path}/cast`}
-          render={(props) => <Cast {...props} cast={this.state.cast} />}
+          render={(props) => {
+            return <Cast {...props} cast={this.state.cast} />;
+          }}
         />
         <Route
           path={`${this.props.match.path}/reviews`}
-          render={(props) => <Review {...props} review={this.state.review} />}
+          render={(props) => {
+            return <Review {...props} review={this.state.review} />;
+          }}
         />
       </>
     );
